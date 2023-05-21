@@ -1,0 +1,130 @@
+/* 全局样式 */
+
+:root {
+  --primary-color: #4CAF50; /* 绿色 */
+}
+
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f2f2f2;
+}
+
+/* 导航栏样式 */
+nav {
+  background-color: var(--primary-color);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
+
+nav h1 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav li {
+  margin: 0 10px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  position: relative;
+}
+
+nav a:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: #fff;
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out 0s;
+}
+
+nav a:hover:before {
+  visibility: visible;
+  transform: scaleX(1);
+}
+
+/* 主要内容区域样式 */
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	flex-wrap:wrap;
+	justify-content: space-between;
+}
+
+
+/* banner样式 */
+.banner {
+  position: relative;
+  height: 500px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
+
+.banner-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.banner-text h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.banner-text p {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+.banner-text .btn {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: #f2f2f2;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.banner-text .btn:hover {
+  background-color: green;
+  color: #fff;
+}
+

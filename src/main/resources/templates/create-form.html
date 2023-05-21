@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns="http:/ /www.w3.org/1999/xhtml" xmlns:th="http:/ /www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>塔可商店</title>
+	<link rel="stylesheet" th:href="@{/css/gpt.css}" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+
+<body>
+	<!-- 导航栏 -->
+	<nav>
+		<h1>塔克云超</h1>
+		<ul>
+			<li><a href="#">首页</a></li>
+			<li><a href="#">关于我们</a></li>
+			<li><a href="#">联系我们</a></li>
+		</ul>
+	</nav>
+
+	<!-- 主要内容区域 -->
+	<div class="container">
+		<!-- banner -->
+		<div class="banner">
+			<img th:src="@{/images/TacoCloud.png}" alt="banner" />
+			<div class="banner-text">
+				<p>我们提供新鲜、美味、健康的塔克，让您的生活更加美好。</p>
+			</div>
+		</div>
+		
+		<p class="lead">快把美味的塔克带回家吧！
+			<button class="btn btn-success btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+			aria-controls="offcanvasRight">打开外卖袋</button></p>		
+		<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+			<div class="offcanvas-header">
+				<h5 id="offcanvasRightLabel">订单详情<a th:href="@{/design}" id="another" class="btn btn-link">再来一块</a></h5>
+				<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+			</div>
+			<div class="offcanvas-body">
+				<ol class="list-group list-group-numbered">
+					<li th:each="taco : ${tacoOrder.tacos}"
+						class="list-group-item d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold" th:text="${taco.name}">taco name</div>
+							<span class="badge bg-success col" th:each="ingredient: ${taco.ingredients}"><label
+									th:text="${ingredient.ingredient}"></label></span>
+						</div>
+					</li>
+				</ol>
+		
+			</div>
+		
+		</div>
+
+		<form method="POST" th:action="@{/orders}" th:object="${tacoOrder}" class="col-12">
+			<div class="row">
+				<div class="col">
+					<h3>配送信息</h3>
+					<div class="mb-3">
+						<label for="deliveryName" class="form-label">地址：</label>
+						<input type="text" class="form-control" th:field="*{deliveryName}" placeholder="某小区某单元">
+						<span class="validationError form-text"
+							th:if="${#fields.hasErrors('deliveryName')}"
+							th:errors="*{deliveryName}">deliveryName Error</span>
+					</div>
+					<div class="mb-3">
+						<label for="deliveryStreet" class="form-label">街道:</label>
+						<input type="text" class="form-control" th:field="*{deliveryStreet}" placeholder="青园街道">
+						<span class="validationError form-text"
+							th:if="${#fields.hasErrors('deliveryStreet')}"
+							th:errors="*{deliveryStreet}">deliveryStreet Error</span>
+					</div>
+					<div class="mb-3">
+						<label for="deliveryCity" class="form-label">市:</label>
+						<input type="text" class="form-control" th:field="*{deliveryCity}" placeholder="长沙市">
+						<span class="validationError form-text"
+							th:if="${#fields.hasErrors('deliveryCity')}"
+							th:errors="*{deliveryCity}">deliveryCity Error</span>
+					</div>
+					<div class="mb-3">
+						<label for="deliveryState" class="form-label">省：</label>
+						<input type="text" class="form-control" th:field="*{deliveryState}" placeholder="湖南省">
+						<span class="validationError form-text"
+							th:if="${#fields.hasErrors('deliveryState')}"
+							th:errors="*{deliveryState}">deliveryState Error</span>
+					</div>
+					<div class="mb-3">
+						<label for="deliveryZip" class="form-label">邮编：</label>
+						<input type="text" class="form-control" th:field="*{deliveryZip}" placeholder="410004">
+						<span class="validationError form-text"
+							th:if="${#fields.hasErrors('deliveryZip')}"
+							th:errors="*{deliveryZip}">deliveryZip Error</span>
+					</div>
+				</div>
+				<div class="col">
+					<h3>支付方式</h3>
+					<div class="mb-3">
+						<label for="ccNumber" class="form-label">Credit Card #:</label>
+						<input type="text" class="form-control" th:field="*{ccNumber}" placeholder="4485963761436729">
+						<span class="validationError form-text"
+							th:if="${#fields.hasErrors('ccNumber')}"
+							th:errors="*{ccNumber}">CC Num Error</span>
+					</div>
+					<div class="mb-3">
+						<label for="ccExpiration" class="form-label">Expiration: </label>
+						<input type="text" class="form-control" th:field="*{ccExpiration}" placeholder="06/26">
+						<span class="validationError form-text"
+							th:if="${#fields.hasErrors('ccExpiration')}"
+							th:errors="*{ccExpiration}">CC Expiration Time Error</span>
+					</div>
+					<div class="mb-3">
+						<label for="ccCVV" class="form-label">CVV: </label>
+						<input type="text" class="form-control" th:field="*{ccCVV}" placeholder="843">
+						<span class="validationError form-text"
+							th:if="${#fields.hasErrors('ccCVV')}"
+							th:errors="*{ccCVV}">CC CVV Error</span>
+					</div>
+				</div>
+				<div class="d-grid gap-2">
+					<button class="btn btn-success mt-3" type="submit">提交</button>
+					
+				</div>
+				
+				
+			</div>
+		</form>
+	</div>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
