@@ -3,6 +3,7 @@ package me.bamboo.controller;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import javax.validation.Valid;
 
@@ -38,7 +39,7 @@ public class CreateTacoController {
 
 	@ModelAttribute
 	public void addIngredientsToModel(Model model) {
-		List<Ingredient> ingredients = ingredientRepository.findAll();
+		Iterable<Ingredient> ingredients = ingredientRepository.findAll();
 //		List<Ingredient> ingredients = Arrays.asList(
 //				new Ingredient("FLTO", "小麦粉薄烙饼", Ingredient.Type.WRAP),
 //				new Ingredient("COTO", "玉米粉薄烙饼", Ingredient.Type.WRAP),
@@ -85,7 +86,7 @@ public class CreateTacoController {
 		
 	}
 
-	private Iterable<Ingredient> filterByType(List<Ingredient> ingredients, Type type) {
-		return ingredients.stream().filter(x -> x.getType().equals(type)).collect(Collectors.toList());
+	private Iterable<Ingredient> filterByType(Iterable<Ingredient> ingredients, Type type) {
+		return StreamSupport.stream(ingredients.spliterator(), false).filter(x -> x.getType().equals(type)).collect(Collectors.toList());
 	}
 }

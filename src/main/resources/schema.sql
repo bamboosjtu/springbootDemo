@@ -44,23 +44,23 @@ delete from Taco;
 delete from Taco_Order;
 delete from Ingredient;
 
-insert into Ingredient (id, name, type)
-	values ('FLTO', '小麦粉薄烙饼', 'WRAP');
-insert into Ingredient (id, name, type)
-	values ('COTO', '玉米粉薄烙饼', 'WRAP');
-insert into Ingredient (id, name, type)
-	values ('GRBF', '牛肉', 'PROTEIN');
-insert into Ingredient (id, name, type)
-	values ('CARN', '猪肉', 'PROTEIN');
-insert into Ingredient (id, name, type)
-	values ('TMTO', '番茄', 'VEGGIES');
-insert into Ingredient (id, name, type)
-	values ('LETC', '莴苣', 'VEGGIES');
-insert into Ingredient (id, name, type)
-	values ('CHED', '切达牌奶酪', 'CHEESE');
-insert into Ingredient (id, name, type)
-	values ('JACK', '杰克牌奶酪', 'CHEESE');
-insert into Ingredient (id, name, type)
-	values ('SLSA', '沙拉酱', 'SAUCE');
-insert into Ingredient (id, name, type)
-	values ('SRCR', '奶油酱', 'SAUCE');
+--insert into Ingredient (id, name, type)
+--	values ('FLTO', '小麦粉薄烙饼', 'WRAP');
+--insert into Ingredient (id, name, type)
+--	values ('COTO', '玉米粉薄烙饼', 'WRAP');
+--insert into Ingredient (id, name, type)
+--	values ('GRBF', '牛肉', 'PROTEIN');
+--insert into Ingredient (id, name, type)
+--	values ('CARN', '猪肉', 'PROTEIN');
+--insert into Ingredient (id, name, type)
+--	values ('TMTO', '番茄', 'VEGGIES');
+--insert into Ingredient (id, name, type)
+--	values ('LETC', '莴苣', 'VEGGIES');
+--insert into Ingredient (id, name, type)
+--	values ('CHED', '切达牌奶酪', 'CHEESE');
+--insert into Ingredient (id, name, type)
+--	values ('JACK', '杰克牌奶酪', 'CHEESE');
+--insert into Ingredient (id, name, type)
+--	values ('SLSA', '沙拉酱', 'SAUCE');
+--insert into Ingredient (id, name, type)
+--	values ('SRCR', '奶油酱', 'SAUCE');

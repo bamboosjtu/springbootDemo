@@ -9,6 +9,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,12 +22,14 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table
 public class TacoOrder {
 	private static final long serialVersionUID = 1L;
 	
+	@Id
 	private Long id;
 	
-	private Date placedAt;
+	private Date placedAt = new Date();
 	
 	@NotBlank(message = "目的地地址不得为空。")
 	private String deliveryName;
