@@ -19,11 +19,6 @@ CREATE TABLE IF NOT EXISTS Taco (
 	created_at timestamp NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS Ingredient_Ref (
-	ingredient varchar(4) NOT NULL,
-	taco bigint NOT NULL,
-	taco_key bigint NOT NULL
-);
 
 CREATE TABLE IF NOT EXISTS Ingredient (
 	id varchar(4) NOT NULL PRIMARY KEY,
@@ -35,11 +30,7 @@ CREATE TABLE IF NOT EXISTS Ingredient (
 ALTER TABLE Taco
 ADD FOREIGN KEY (taco_order) REFERENCES Taco_Order(id);
 
-ALTER TABLE Ingredient_Ref
-ADD FOREIGN KEY (ingredient) REFERENCES Ingredient(id);
 
-
-delete from Ingredient_Ref;
 delete from Taco;
 delete from Taco_Order;
 delete from Ingredient;
