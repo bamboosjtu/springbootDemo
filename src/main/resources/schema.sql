@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS Taco_Order (
 	delivery_zip varchar(10) NOT NULL,
 	cc_number varchar(16) NOT NULL,
 	cc_expiration varchar(5) NOT NULL,
-	cc_cvv varchar(3) NOT NULL,
+	cccvv varchar(3) NOT NULL,
 	placed_at timestamp NOT NULL
 );
 

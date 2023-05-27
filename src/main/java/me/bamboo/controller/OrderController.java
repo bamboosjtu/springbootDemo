@@ -1,11 +1,10 @@
 package me.bamboo.controller;
 
-import java.util.Date;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import lombok.extern.slf4j.Slf4j;
 import me.bamboo.data.OrderRepository;
-import me.bamboo.entity.Taco;
 import me.bamboo.entity.TacoOrder;
 
 @Slf4j
@@ -28,6 +26,14 @@ public class OrderController {
 	@Autowired	
 	public OrderController(OrderRepository orderRepository) {
 		this.orderRepository = orderRepository;
+	}
+	
+	@GetMapping
+	public String listOrders(Model m) {
+		Iterable<TacoOrder> orders = orderRepository.findAllByOrderByPlacedAtDesc();
+		m.addAttribute("orders", orders);
+		return "orders";
+		
 	}
 
 	@GetMapping("/current")
