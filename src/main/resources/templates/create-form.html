@@ -46,7 +46,7 @@
 						<div class="ms-2 me-auto">
 							<div class="fw-bold" th:text="${taco.name}">taco name</div>
 							<span class="badge bg-success col" th:each="ingredient: ${taco.ingredients}"><label
-									th:text="${ingredient.id}"></label></span>
+									th:text="${ingredient.name}"></label></span>
 						</div>
 					</li>
 				</ol>

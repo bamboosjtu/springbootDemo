@@ -21,35 +21,24 @@ import me.bamboo.entity.Ingredient;
 import me.bamboo.entity.Ingredient.Type;
 import me.bamboo.entity.Taco;
 import me.bamboo.entity.TacoOrder;
+import me.bamboo.entity.TacoUDRUtils;
 
 @Slf4j
 @Controller
 @RequestMapping("/design")
 @SessionAttributes("tacoOrder")
-public class CreateTacoController {
+public class DesignTacoController {
 	
 	private final IngredientRepository ingredientRepository;
 	
 	@Autowired
-	public CreateTacoController(IngredientRepository ingredientRepository) {
+	public DesignTacoController(IngredientRepository ingredientRepository) {
 		this.ingredientRepository = ingredientRepository;
 	}
 
 	@ModelAttribute
 	public void addIngredientsToModel(Model model) {
 		Iterable<Ingredient> ingredients = ingredientRepository.findAll();
-//		List<Ingredient> ingredients = Arrays.asList(
-//				new Ingredient("FLTO", "小麦粉薄烙饼", Ingredient.Type.WRAP),
-//				new Ingredient("COTO", "玉米粉薄烙饼", Ingredient.Type.WRAP),
-//				new Ingredient("GRBF", "牛肉", Ingredient.Type.PROTEIN),
-//				new Ingredient("CARN", "猪肉", Ingredient.Type.PROTEIN),
-//				new Ingredient("TMTO", "番茄", Ingredient.Type.VEGGIES),
-//				new Ingredient("LETC", "莴苣", Ingredient.Type.VEGGIES),
-//				new Ingredient("CHED", "切达牌奶酪", Ingredient.Type.CHEESE),
-//				new Ingredient("JACK", "杰克牌奶酪", Ingredient.Type.CHEESE),
-//				new Ingredient("SLSA", "沙拉酱", Ingredient.Type.SAUCE),
-//				new Ingredient("SRCR", "奶油酱", Ingredient.Type.SAUCE)
-//				);
 		Type[] types = Ingredient.Type.values();
 		for (Type type : types) {
 			model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
@@ -78,7 +67,7 @@ public class CreateTacoController {
 			return "design";
 		}
 		
-		tacoOrder.addTaco(taco);
+		tacoOrder.addTaco(TacoUDRUtils.toTacoUDT(taco));
 		log.info("正在添加塔可: {}", taco);
 		return "redirect:/orders/current";
 		

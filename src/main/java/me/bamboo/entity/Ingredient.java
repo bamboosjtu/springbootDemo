@@ -1,9 +1,7 @@
 package me.bamboo.entity;
 
-
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.Table;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -14,9 +12,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force=true)
-@Entity
+@Table("ingredients")
 public class Ingredient{
-	@Id
+	@PrimaryKey
 	private String id;
 	private String name;
 	private Type type;

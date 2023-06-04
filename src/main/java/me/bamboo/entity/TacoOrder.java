@@ -3,17 +3,17 @@ package me.bamboo.entity;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.CreditCardNumber;
+import org.springframework.data.cassandra.core.mapping.Column;
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.Table;
+
+import com.datastax.oss.driver.api.core.uuid.Uuids;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,13 +22,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Table("orders")
 public class TacoOrder {
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	@PrimaryKey
+	private UUID id = Uuids.timeBased();
 	
 	private Date placedAt = new Date();
 	
@@ -50,10 +49,10 @@ public class TacoOrder {
 	@Digits(integer = 3, fraction = 0, message = "无效的CVV格式。")
 	private String ccCVV;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Taco> tacos = new ArrayList<>();
+	@Column("tacos")
+	private List<TacoUDT> tacos = new ArrayList<>();
 	
-	public void addTaco(Taco taco) {
+	public void addTaco(TacoUDT taco) {
 		this.tacos.add(taco);
 	}
 

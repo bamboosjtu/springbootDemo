@@ -27,14 +27,6 @@ public class OrderController {
 	public OrderController(OrderRepository orderRepository) {
 		this.orderRepository = orderRepository;
 	}
-	
-	@GetMapping
-	public String listOrders(Model m) {
-		Iterable<TacoOrder> orders = orderRepository.findAllByOrderByPlacedAtDesc();
-		m.addAttribute("orders", orders);
-		return "orders";
-		
-	}
 
 	@GetMapping("/current")
 	public String orderForm() {
